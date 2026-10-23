@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 resource "aws_instance" "myec2" {
-    ami           = "ami-0720cb7af233b0529"
-    instance_type = "t2.micro"
+  ami           = "ami-0ddbd63d0e3325a92"
+  instance_type = "t3.micro"
 
   tags = {
     Name = "Web Server"
@@ -13,11 +13,14 @@ resource "aws_instance" "myec2" {
 }
 
 resource "aws_instance" "myec2db" {
-    ami           = "ami-0720cb7af233b0529"
-    instance_type = "t2.micro"
+  ami           = "ami-0ddbd63d0e3325a92"
+  instance_type = "t3.micro"
 
   tags = {
     Name = "DB Server"
   }
 }
 
+output "dbservers" {
+  value = aws_instance.myec2db.availability_zone
+}
